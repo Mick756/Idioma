@@ -45,7 +45,7 @@ $("#connotation").on("click", function () {
     slangShowing = true;
     let search = $(".userInput").val().trim();
     $.ajax({
-        url: "http://api.urbandictionary.com/v0/define?term=" + search,
+        url: "https://api.urbandictionary.com/v0/define?term=" + search,
         method: "GET"
     }).then(response => {
 
