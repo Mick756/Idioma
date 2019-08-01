@@ -4,22 +4,46 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-        name="viewport">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Idioma - Word Search</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+
 
 </head>
 
 <body>
 
+    <nav class="topNavBar">
+        <img class="idiomaImage" src="https://fontmeme.com/permalink/190801/eabf9bbd4abc7e23cfc534e8b9990ca8.png" alt="Idioma">
+    </nav>
+
     <div class="container">
 
+        <div class="inputContainer">
 
+            <div class="userInputLabel">Enter a word or a phrase</div>
+            <br>
+            <input class="userInput">
 
-    </div>
+            <button type="button" class="btn btn-block optionButton" id="define">Define</button>
+            <div class="defineBox">
+
+            </div>
+
+            <button type="button" class="btn btn-block optionButton" id="translate">Translate</button>
+            <div>
+
+            </div>
+
+            <button type="button" class="btn btn-block optionButton" id="connotation">Connotations (Rated R)</button>
+            <div class="slangBox">
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -29,7 +53,7 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 
-    <script src="assets/js/alex.js"></script>
+<!--    <script src="assets/js/alex.js"></script>-->
     <script src="assets/js/mick.js"></script>
     <script src="assets/js/hunter.js"></script>
     <script src="assets/js/search.js"></script>
@@ -90,5 +114,4 @@
         // });
     </script> -->
 </body>
-
 </html>
