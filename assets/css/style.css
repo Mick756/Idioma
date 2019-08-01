@@ -1,0 +1,30 @@
+body {
+    background-image: url("../images/background.jpg");
+    font-family: 'Source Serif Pro', serif;
+}
+.topNavBar {
+    padding: 5px;
+}
+.idiomaImage {
+    margin: 10px;
+}
+.inputContainer {
+}
+.userInputLabel {
+    text-align: center;
+    font-size: 35px;
+}
+.userInput {
+    width: 100%;
+    padding: 10px 30px;
+    font-size: 15px;
+}
+.buttons {
+    margin: 0 auto;
+    width: 60%;
+}
+.optionButton {
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+}
