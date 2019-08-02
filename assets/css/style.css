@@ -15,7 +15,7 @@ body {
     font-size: 35px;
 }
 .userInput {
-    width: 100%;
+    width: 95%;
     padding: 10px 30px;
     font-size: 15px;
 }
@@ -43,4 +43,9 @@ body {
     margin: 5px;
     border: 1px solid black;
     border-radius: 10px;
+}
+#clear {
+    color: #264F6D;
+    font-size: 25px;
+    padding: 9px 15px;
 }
