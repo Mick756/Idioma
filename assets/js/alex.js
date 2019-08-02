@@ -50,6 +50,7 @@ $.ajax({
             try {
                 data = JSON.parse(data);
                 console.log(data.outputs[0].output);
+
                     $("#translateBox").append(data.outputs[0].output);
             } catch (exp) {
 
@@ -65,7 +66,7 @@ $(document).on("click", "#but2", function (){
 
     let search = $("#search-input").val().trim();
     $.ajax({
-       url: "http://api.urbandictionary.com/v0/define?term=" + search,
+       url: "https://api.urbandictionary.com/v0/define?term=" + search,
        method: "GET"
     }).then(response => {
         for (let i = 0; i < response.list.length; i++) {
