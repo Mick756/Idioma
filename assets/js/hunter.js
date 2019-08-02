@@ -95,6 +95,9 @@ $("#define").on("click", function () {
       defineShowing = false;
 
     }
+
+
+
 });
 
 $("#connotation").on("click", function () {
@@ -127,3 +130,4 @@ $("#connotation").on("click", function () {
       slangShowing = false;
     }
 });
+
