@@ -56,3 +56,16 @@ body {
 .translateButton {
     margin-top: 10px;
 }
+.birthdayInput {
+    padding: 10px;
+    width: 50%;
+    margin: 2% 25%;
+    text-align: center;
+}
+.ageButton {
+    width: 10%;
+    margin: 10px 45%
+}
+.centerText {
+    text-align: center;
+}
