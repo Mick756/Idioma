@@ -27,13 +27,14 @@ body {
     margin-top: 10px;
     padding: 10px;
     text-align: center;
+    color: #173F5F;
+    font-size: 25px;
 }
 .translationBox {
-    width: 100%;
+    width: 95%;
     height: 60px;
     background-color: white;
-    text-align: center;
-    margin-top: 20px;
+    margin: 20px auto;
     border: 1px solid black;
     border-radius: 10px;
 }
@@ -45,7 +46,10 @@ body {
     border-radius: 10px;
 }
 #clear {
-    color: #264F6D;
+    color: #173F5F;
     font-size: 25px;
     padding: 9px 15px;
+}
+.translateButton {
+    margin: 10px;
 }
