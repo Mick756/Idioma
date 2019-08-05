@@ -1,8 +1,6 @@
 const languages = ["English", "Spanish", "French", "Chinese", "Japanese"];
 const languageCodes = ["en", "es", "fr", "zh", "ja"];
 
-let userInput = $(".userInput").val().trim();
-
 /**
  * EVENTS
  */
@@ -11,7 +9,7 @@ $("#define").on("click", function () {
     let $defineBox = $(".defineBox");
     $defineBox.empty();
 
-    define(userInput);
+    define($(".userInput").val().trim());
 });
 
 $("#connotation").on("click", function () {
@@ -19,14 +17,20 @@ $("#connotation").on("click", function () {
     let $slangBox = $(".slangBox");
     $slangBox.empty();
 
-    connotate(userInput.val().trim());
+    connote($(".userInput").val().trim());
 });
 
-$("#translate").on("click", displayTranslationBox());
+$("#translate").on("click", function() {
+    displayTranslationBox();
+});
 
-$(".translateButton").on("click", translate($(".language").val().trim(), userInput.val().trim()));
+$(".translateButton").on("click", function () {
+    translate($(".language").val().trim(), $(".userInput").val().trim())
+});
 
-$("#clear").on("click", clear());
+$("#clear").on("click", function() {
+    clear()
+});
 
 
 /**
@@ -57,7 +61,7 @@ function clear(){
     $slangBox.empty();
     let $translateBox = $(".translateBox");
     $translateBox.empty();
-    userInput.val("");
+    $(".userInput").val("");
 }
 
 function translate(target, input) {
@@ -75,7 +79,7 @@ function translate(target, input) {
     });
 }
 
-function connotate(search) {
+function connote(search) {
     let $slangBox = $(".slangBox");
 
     $.ajax({
