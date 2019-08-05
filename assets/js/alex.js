@@ -1,5 +1,5 @@
-const languages = ["English", "Spanish", "French", "Chinese", "Japanese"];
-const languageCodes = ["en", "es", "fr", "zh", "ja"];
+const languages = ["English", "Spanish", "French", "Chinese", "Japanese", "Korean"];
+const languageCodes = ["en", "es", "fr", "zh", "ja", "ko"];
 
 /**
  * EVENTS
@@ -72,6 +72,7 @@ function displayTranslationBox() {
     let $translateBox = $(".translateBox");
     $translateBox.empty();
 
+    let $button = $("<button class = 'transSpeech fas fa-volume-up'></button>");
     let $contentBox = $("<div>").addClass("contentBox");
     let $translated = $("<div>").addClass("translationBox");
     let $dropDown = $("<select class= 'form-control language' id='dropdown'></select>");
@@ -80,8 +81,7 @@ function displayTranslationBox() {
         $dropDown.append($option);
     }
     let $translate = $("<button>Translate</button>").addClass("btn translateButton");
-
-    $contentBox.append($dropDown, $translated, $translate);
+    $contentBox.append($dropDown, $translated, $translate, $button);
     $translateBox.append($contentBox);
 }
 
@@ -154,7 +154,8 @@ function define(search) {
         if ($defineBox.children().length === 0) {
 
             let $contentBox = $("<div>").addClass("contentBox");
-            let $header = $("<h2>").text(search.charAt(0).toUpperCase() + search.slice(1) + " (" + response[0].hwi.prs[0].mw + ")"); // word
+            let $button = $("<button class = 'speech fas fa-volume-up'></button>");
+            let $header = $("<h2 id = 'defined'>").text(search.charAt(0).toUpperCase() + search.slice(1) + " (" + response[0].hwi.prs[0].mw + ")"); // word
             let $defList = $("<ol>");
             for (let i = 0; i < response[0].shortdef.length; i++) {
                 let $listItem = $("<li>").text(response[0].shortdef[i]);
@@ -163,7 +164,7 @@ function define(search) {
             let part = response[0].fl;
             let $partOfSpeech = $("<div>").text("Part of Speech: " + part.charAt(0).toUpperCase() + part.slice(1));
             let $offensive = $("<div>").text("Offensive: " + (response[0].meta.offensive ? "Yes" : "No"));
-
+            $header.append($button);
             $contentBox.append($header, $defList, $partOfSpeech, $offensive);
             $defineBox.append($contentBox);
 
@@ -171,3 +172,44 @@ function define(search) {
 
     });
 }
+// Text to Speech
+
+let speechCodes = ["en-us", "es-mx", "fr-fr", "zh-cn", "ja-jp", "ko-kr"];
+
+$(document).on("click", ".speech", function () {
+    $.speech({
+        key: 'eff34443a77f4306a983822100a53171',
+        src: $("#defined").text().split(" ")[0],
+        hl: 'en-us',
+        r: -1,
+        c: 'mp3',
+        f: '44khz_16bit_stereo',
+        ssml: false
+    });
+});
+
+$(document).on("click", ".transSpeech", function () {
+    let langs = [];
+    for (let i = 0; i < languages.length; i++) {
+        let  $lang =  $("<div>").attr("id", languages[i]);
+        $lang.val(speechCodes[i]);
+        langs.push($lang);
+    }
+    let language = "";
+    langs.forEach(lang => {
+        if (lang.val().includes($(".language").val())) {
+            language = lang.val();
+        }
+    });
+
+
+    $.speech({
+        key: 'eff34443a77f4306a983822100a53171',
+        src: $(".translationBox").text(),
+        hl: language,
+        r: -1,
+        c: 'mp3',
+        f: '44khz_16bit_stereo',
+        ssml: false
+    });
+});
