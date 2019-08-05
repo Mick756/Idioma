@@ -15,7 +15,7 @@ body {
     font-size: 35px;
 }
 .userInput {
-    width: 95%;
+    width: 89%;
     padding: 10px 30px;
     font-size: 15px;
 }
@@ -27,15 +27,17 @@ body {
     margin-top: 10px;
     padding: 10px;
     text-align: center;
+    color: #173F5F;
+    font-size: 25px;
 }
 .translationBox {
-    width: 100%;
+    width: 95%;
     height: 60px;
     background-color: white;
-    text-align: center;
-    margin-top: 20px;
+    margin: 20px auto;
     border: 1px solid black;
     border-radius: 10px;
+    padding: 10px;
 }
 .contentBox {
     background-color: whitesmoke;
@@ -44,8 +46,13 @@ body {
     border: 1px solid black;
     border-radius: 10px;
 }
-#clear {
-    color: #264F6D;
+.searchButton {
+    float: right;
+    color: #173F5F;
     font-size: 25px;
     padding: 9px 15px;
+    margin: 2px;
+}
+.translateButton {
+    margin-top: 10px;
 }
