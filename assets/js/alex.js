@@ -114,7 +114,7 @@ $("#translate").on("click", function () {
             var target = $(".language").val().trim();
             var input = $(".userInput").val().trim();
             $.ajax({
-                met hod:'GET',
+                method:'GET',
                 url: 'https://api-platform.systran.net/translation/text/translate?key=948fb53e-0398-41b8-9b8b-5adad715d36a',
                 dataType: 'text',
                 data: {
@@ -122,7 +122,7 @@ $("#translate").on("click", function () {
                     target: target,
                     input: input
                 },
-                success: func tion(data) {
+                success: function(data) {
                     if (typeof data === 'string')
                         try {
                             data = JSON.parse(data);
