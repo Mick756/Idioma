@@ -53,6 +53,9 @@ $("#clear").on("click", function() {
 $("#all").on("click", function() {
     let input = $(".userInput").val().trim();
 
+    let modal = $createModal("birthdayModal");
+    $(modal).modal('show');
+
     if (input.length) {
         displayTranslationBox();
         define(input);
