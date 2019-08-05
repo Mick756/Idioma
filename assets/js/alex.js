@@ -72,7 +72,7 @@ function displayTranslationBox() {
     let $translateBox = $(".translateBox");
     $translateBox.empty();
 
-    let $button = $("<button class = 'transSpeech fas fa-volume-up'></button>");
+    let $button = $("<button class ='btn searchButton transSpeech fas fa-volume-up'></button>");
     let $contentBox = $("<div>").addClass("contentBox");
     let $translated = $("<div>").addClass("translationBox");
     let $dropDown = $("<select class= 'form-control language' id='dropdown'></select>");
@@ -154,7 +154,7 @@ function define(search) {
         if ($defineBox.children().length === 0) {
 
             let $contentBox = $("<div>").addClass("contentBox");
-            let $button = $("<button class = 'speech fas fa-volume-up'></button>");
+            let $button = $("<button class = 'btn searchButton speech fas fa-volume-up'></button>");
             let $header = $("<h2 id = 'defined'>").text(search.charAt(0).toUpperCase() + search.slice(1) + " (" + response[0].hwi.prs[0].mw + ")"); // word
             let $defList = $("<ol>");
             for (let i = 0; i < response[0].shortdef.length; i++) {
