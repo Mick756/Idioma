@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Idioma - Word Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+<nav class="topNavBar">
+    <img class="idiomaImage" src="https://fontmeme.com/permalink/190801/eabf9bbd4abc7e23cfc534e8b9990ca8.png" alt="Idioma">
+</nav>
+
+<div class="container">
+
+    <div class="inputContainer">
+
+        <div class="userInputLabel">Enter a word or a phrase</div>
+        <br>
+        <div>
+
+            <input class="userInput">
+            <button type="button" class="btn searchButton fas fa-trash" id="clear"></button>
+            <button type="button" class="btn searchButton fas fa-plus-square" id="all"></button>
+        </div>
+
+        <button type="button" class="btn btn-block optionButton" id="define">Define</button>
+        <div class="defineBox">
+
+        </div>
+
+        <button type="button" class="btn btn-block optionButton" id="translate">Translate</button>
+        <div class="translateBox">
+
+
+        </div>
+
+        <button type="button" class="btn btn-block optionButton" id="connotation">Connotations (Rated R)</button>
+        <div class="slangBox">
+        </div>
+
+    </div>
+
+</div>
+<!--This is a little speaker icon-->
+<!--    <i class="fas fa-volume-up"></i> -->
+
+
+<script src="https://kit.fontawesome.com/fd2abd9806.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="assets/libraries/jquery.voicerss-tts.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+<!--<script src="assets/js/alex.js"></script>-->
+<!--    <script src="assets/js/mick.js"></script>-->
+<!--    <script src="assets/js/hunter.js"></script>-->
+    <script src="assets/js/search.js"></script>
+</body>
+</html>
