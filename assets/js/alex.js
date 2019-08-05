@@ -6,30 +6,58 @@ const languageCodes = ["en", "es", "fr", "zh", "ja"];
  */
 
 $("#define").on("click", function () {
-    let $defineBox = $(".defineBox");
-    $defineBox.empty();
+    let input = $(".userInput").val().trim();
 
-    define($(".userInput").val().trim());
+    if (input.length) {
+        let $defineBox = $(".defineBox");
+        $defineBox.empty();
+
+        define(input);
+    }
 });
 
 $("#connotation").on("click", function () {
+    let input = $(".userInput").val().trim();
 
-    let $slangBox = $(".slangBox");
-    $slangBox.empty();
+    if (input.length) {
+        let $slangBox = $(".slangBox");
+        $slangBox.empty();
 
-    connote($(".userInput").val().trim());
+        connote(input);
+    }
 });
 
 $("#translate").on("click", function() {
-    displayTranslationBox();
+    let input = $(".userInput").val().trim();
+
+    if (input.length) {
+        displayTranslationBox();
+    }
 });
 
-$(".translateButton").on("click", function () {
-    translate($(".language").val().trim(), $(".userInput").val().trim())
+$(document).on("click", ".translateButton", function () {
+    console.log("TRANS");
+
+    let input = $(".userInput").val().trim();
+    let lang = $(".language").val().trim();
+
+    if (input.length) {
+        translate(lang, input);
+    }
 });
 
 $("#clear").on("click", function() {
-    clear()
+    clear();
+});
+
+$("#all").on("click", function() {
+    let input = $(".userInput").val().trim();
+
+    if (input.length) {
+        displayTranslationBox();
+        define(input);
+        connote(input);
+    }
 });
 
 
@@ -66,16 +94,23 @@ function clear(){
 
 function translate(target, input) {
     $.ajax({
-        method: 'GET',
-        url: 'https://api-platform.systran.net/translation/text/translate?key=948fb53e-0398-41b8-9b8b-5adad715d36a',
+        method:'GET',
+        url: 'https://api-platform.systran.net/translation/text/translate?key=c32c69a2-91b3-4499-9142-418f24c81096',
         dataType: 'text',
         data: {
             source: "auto",
             target: target,
             input: input
         },
-    }).then( response => {
-        $(".translationBox").text(response.outputs[0].output);
+        success: function(data) {
+            if (typeof data === 'string')
+                try {
+                    data = JSON.parse(data);
+                    $(".translationBox").text(data.outputs[0].output);
+                } catch (exp) {}
+        },
+        error: function(xhr, status, err) {
+        }
     });
 }
 
