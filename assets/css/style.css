@@ -81,7 +81,9 @@ body {
 }
 .ageButton {
     width: 10%;
-    margin: 10px 45%
+    margin: 10px 45%;
+    background-color: #173F5F;
+    color: white;
 }
 .centerText {
     text-align: center;
