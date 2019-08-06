@@ -89,6 +89,16 @@ body {
     text-align: center;
 }
 @media only screen and (max-width: 1200px) {
+    .userInputLabel {
+        text-align: center;
+        font-size: 35px;
+        background-color: #173F5F;
+        color: white;
+        width: 70%;
+        margin: 0 15%;
+        padding: 10px;
+        border-radius: 5px;
+    }
     .userInput {
         width: 100%;
         padding: 10px 30px;
@@ -113,6 +123,16 @@ body {
     }
 }
 @media only screen and (max-width: 648px) {
+    .userInputLabel {
+        text-align: center;
+        font-size: 35px;
+        background-color: #173F5F;
+        color: white;
+        width: 90%;
+        margin: 0 5%;
+        padding: 10px;
+        border-radius: 5px;
+    }
     .searchButton {
         float: left;
         background-color: #173F5F;
