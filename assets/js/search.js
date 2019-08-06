@@ -136,7 +136,7 @@ function $createModal(id) {
     let $modalHeader = $("<div>").addClass("modal-header").text("Restricted Content! (18+)");
     let $birthdayInput = $("<input>").addClass("birthdayInput");
     let $info = $("<br> <div>").addClass("centerText").text("Enter date of birth (MM/DD/YYYY):");
-    let $enterButton = $("<button>").addClass("btn bg-primary ageButton").text("Enter");
+    let $enterButton = $("<button>").addClass("btn ageButton").text("Enter");
     $content.append($modalHeader, $info, $birthdayInput, $enterButton);
     $modal.append($dialog.append($content));
     return $modal;
