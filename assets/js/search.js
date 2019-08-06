@@ -45,7 +45,9 @@ $("#translate").on("click", function() {
 $(document).on("click", ".translateButton", function () {
 
     let input = $(".userInput").val().trim();
-    let lang = $(".language").val().trim();
+    let lang = $(".language").val();
+
+    console.log(lang);
 
     if (input.length) {
         translate(lang, input);
@@ -134,7 +136,7 @@ function $createModal(id) {
     let $modalHeader = $("<div>").addClass("modal-header").text("Restricted Content! (18+)");
     let $birthdayInput = $("<input>").addClass("birthdayInput");
     let $info = $("<br> <div>").addClass("centerText").text("Enter date of birth (MM/DD/YYYY):");
-    let $enterButton = $("<button>").addClass("btn bg-primary ageButton").text("Enter");
+    let $enterButton = $("<button>").addClass("btn ageButton").text("Enter");
     $content.append($modalHeader, $info, $birthdayInput, $enterButton);
     $modal.append($dialog.append($content));
     return $modal;
@@ -171,22 +173,9 @@ function clear(){
 function translate(target, input) {
     $.ajax({
         method:'GET',
-        url: 'https://api-platform.systran.net/translation/text/translate?key=0271cc19-f5ff-4eb9-bb2b-8c9bcfe27d64\n',
-        dataType: 'text',
-        data: {
-            source: "auto",
-            target: target,
-            input: input
-        },
-        success: function(data) {
-            if (typeof data === 'string')
-                try {
-                    data = JSON.parse(data);
-                    $(".translationBox").text(data.outputs[0].output);
-                } catch (exp) {}
-        },
-        error: function(xhr, status, err) {
-        }
+        url: 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190806T172206Z.e66e4ed64c1faa9b.213e793f362a69c14c4da343834d983813ae6c70&lang=' + target + '&text=' + input,
+    }).then(response => {
+        $(".translationBox").text(response.text[0]);
     });
 }
 
@@ -204,7 +193,9 @@ function connote(search) {
             let $header = $("<h2>").text(search.charAt(0).toUpperCase() + search.slice(1));
             let $defList = $("<ol>");
             let queryLimit = Math.round(response.list.length / 2);
+
             for (let i = 0; i < queryLimit; i++) {
+
                 let $listItem = $("<li>").text(response.list[i].definition.replace("[", "").replace("]", ""));
                 $defList.append($listItem);
             }
@@ -222,6 +213,7 @@ function define(search) {
     if (search.includes(" ")) {
 
         if ($defineBox.children().length !== 0) {
+
             $defineBox.clear();
         }
 
@@ -231,7 +223,9 @@ function define(search) {
             let searchedWords = [];
 
             for (let searchQ = 0; searchQ < splitSearch.length; searchQ++) {
+
                 if (!searchedWords.includes(splitSearch[searchQ]) && splitSearch[searchQ] !== "is" && splitSearch[searchQ] !== "a" && splitSearch[searchQ] !== "an" && splitSearch[searchQ] !== "to") {
+
                     appendDefineSearch(splitSearch[searchQ], true, splitSearch.length);
                     searchedWords.push(splitSearch[searchQ]);
                 }
@@ -240,6 +234,7 @@ function define(search) {
     } else {
 
         if ($defineBox.children().length !== 0) {
+
             $defineBox.clear();
         }
 
@@ -262,18 +257,24 @@ function appendDefineSearch(search, phrase, size) {
             let $button = $("<button class = 'btn voiceButton speech fas fa-volume-up'></button>");
             let $header = $("<h2 id = 'defined'>").text(search.charAt(0).toUpperCase() + search.slice(1) + " (" + response[0].hwi.prs[0].mw + ")");
             let $defList = $("<ol>");
+
             for (let i = 0; i < response[0].shortdef.length; i++) {
+
                 let $listItem = $("<li>").text(response[0].shortdef[i]);
                 $defList.append($listItem);
             }
+
             let part = response[0].fl;
             let $partOfSpeech = $("<div>").text("Part of Speech: " + part.charAt(0).toUpperCase() + part.slice(1));
             let $offensive = $("<div>").text("Offensive: " + (response[0].meta.offensive ? "Yes" : "No"));
 
             if (phrase && $defineBox.children().length < (size - 1)) {
+
                 $contentBox.append($header.append($button), $defList, $partOfSpeech, $offensive);
                 $defineBox.append($contentBox);
+
             } else if ($defineBox.children().length === 0) {
+
                 $contentBox.append($header.append($button), $defList, $partOfSpeech, $offensive);
                 $defineBox.append($contentBox);
             }
