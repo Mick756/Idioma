@@ -10,7 +10,9 @@ $("#define").on("click", function () {
         let $defineBox = $(".defineBox");
         $defineBox.empty();
 
-        define(input);
+        if ($defineBox.children().length === 0) {
+            define(input);
+        }
     }
 });
 
@@ -217,27 +219,38 @@ function connote(search) {
 function define(search) {
     let $defineBox = $(".defineBox");
 
-    if ($defineBox.children().length !== 0) {
-        $defineBox.clear();
-    }
-
     if (search.includes(" ")) {
 
-        let splitSearch = search.split(" ");
-        let searchedWords = [];
+        if ($defineBox.children().length !== 0) {
+            $defineBox.clear();
+        }
 
-        for (let searchQ = 0; searchQ < splitSearch.length; searchQ++) {
-            if (!searchedWords.includes(splitSearch[searchQ]) && splitSearch[searchQ] !== "is" && splitSearch[searchQ] !== "a" && splitSearch[searchQ] !== "an"&& splitSearch[searchQ] !== "to") {
-                appendDefineSearch(splitSearch[searchQ]);
-                searchedWords.push(splitSearch[searchQ]);
+        if ($defineBox.children().length === 0) {
+
+            let splitSearch = search.split(" ");
+            let searchedWords = [];
+
+            for (let searchQ = 0; searchQ < splitSearch.length; searchQ++) {
+                if (!searchedWords.includes(splitSearch[searchQ]) && splitSearch[searchQ] !== "is" && splitSearch[searchQ] !== "a" && splitSearch[searchQ] !== "an" && splitSearch[searchQ] !== "to") {
+                    appendDefineSearch(splitSearch[searchQ], true, splitSearch.length);
+                    searchedWords.push(splitSearch[searchQ]);
+                }
             }
         }
     } else {
-        appendDefineSearch(search);
+
+        if ($defineBox.children().length !== 0) {
+            $defineBox.clear();
+        }
+
+        if ($defineBox.children().length === 0) {
+
+            appendDefineSearch(search, false, -1);
+        }
     }
 }
 
-function appendDefineSearch(search) {
+function appendDefineSearch(search, phrase, size) {
     let $defineBox = $(".defineBox");
 
     $.ajax({
@@ -245,20 +258,24 @@ function appendDefineSearch(search) {
         method: 'GET',
     }).then(response => {
 
-        let $contentBox = $("<div>").addClass("contentBox");
-        let $button = $("<button class = 'btn voiceButton speech fas fa-volume-up'></button>");
-        let $header = $("<h2 id = 'defined'>").text(search.charAt(0).toUpperCase() + search.slice(1) + " (" + response[0].hwi.prs[0].mw + ")");
-        let $defList = $("<ol>");
-        for (let i = 0; i < response[0].shortdef.length; i++) {
-            let $listItem = $("<li>").text(response[0].shortdef[i]);
-            $defList.append($listItem);
-        }
-        let part = response[0].fl;
-        let $partOfSpeech = $("<div>").text("Part of Speech: " + part.charAt(0).toUpperCase() + part.slice(1));
-        let $offensive = $("<div>").text("Offensive: " + (response[0].meta.offensive ? "Yes" : "No"));
+            let $contentBox = $("<div>").addClass("contentBox");
+            let $button = $("<button class = 'btn voiceButton speech fas fa-volume-up'></button>");
+            let $header = $("<h2 id = 'defined'>").text(search.charAt(0).toUpperCase() + search.slice(1) + " (" + response[0].hwi.prs[0].mw + ")");
+            let $defList = $("<ol>");
+            for (let i = 0; i < response[0].shortdef.length; i++) {
+                let $listItem = $("<li>").text(response[0].shortdef[i]);
+                $defList.append($listItem);
+            }
+            let part = response[0].fl;
+            let $partOfSpeech = $("<div>").text("Part of Speech: " + part.charAt(0).toUpperCase() + part.slice(1));
+            let $offensive = $("<div>").text("Offensive: " + (response[0].meta.offensive ? "Yes" : "No"));
 
-        $contentBox.append($header.append($button), $defList, $partOfSpeech, $offensive);
-        $defineBox.append($contentBox);
-
+            if (phrase && $defineBox.children().length < (size - 1)) {
+                $contentBox.append($header.append($button), $defList, $partOfSpeech, $offensive);
+                $defineBox.append($contentBox);
+            } else if ($defineBox.children().length === 0) {
+                $contentBox.append($header.append($button), $defList, $partOfSpeech, $offensive);
+                $defineBox.append($contentBox);
+            }
     });
 }
