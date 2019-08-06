@@ -292,7 +292,7 @@ function appendDefineSearch(search, phrase, size) {
             let $partOfSpeech = $("<div>").text("Part of Speech: " + part.charAt(0).toUpperCase() + part.slice(1));
             let $offensive = $("<div>").text("Offensive: " + (response[0].meta.offensive ? "Yes" : "No"));
 
-            if (phrase && $defineBox.children().length < (size - 1)) {
+            if (phrase && $defineBox.children().length < size) {
 
                 $contentBox.append($header.append($button), $defList, $partOfSpeech, $offensive);
                 $defineBox.append($contentBox);
