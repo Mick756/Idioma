@@ -2,43 +2,67 @@ const languages = ["English", "Spanish", "French", "Chinese", "Japanese", "Korea
 const languageCodes = ["en", "es", "fr", "zh", "ja", "ko", "de"];
 let speechCodes = ["en-us", "es-mx", "fr-fr", "zh-cn", "ja-jp", "ko-kr", "de-de"];
 let oldEnough = null;
+let defineBoxShowing = false;
+let translateBoxShowing = false;
+let connotationBoxShowing = false;
 
 $("#define").on("click", function () {
-    let input = $(".userInput").val().trim();
+    let $defineBox = $(".defineBox");
+    if (!defineBoxShowing) {
+        defineBoxShowing = true;
+        let input = $(".userInput").val().trim();
 
-    if (input.length) {
-        let $defineBox = $(".defineBox");
-        $defineBox.empty();
+        if (input.length) {
+            $defineBox.empty();
 
-        if ($defineBox.children().length === 0) {
-            define(input);
+            if ($defineBox.children().length === 0) {
+                define(input);
+            }
         }
+    } else {
+        defineBoxShowing = false;
+        $defineBox.empty();
     }
 });
 
 $("#connotation").on("click", function () {
-    let input = $(".userInput").val().trim();
+    let $slangBox = $(".slangBox");
 
-    if (input.length) {
-        let $slangBox = $(".slangBox");
-        $slangBox.empty();
+    if (!connotationBoxShowing) {
+        connotationBoxShowing = true;
+        let input = $(".userInput").val().trim();
 
-        if (oldEnough !== null) {
-            if (oldEnough) {
-                connote(input);
+        if (input.length) {
+            $slangBox.empty();
+
+            if (oldEnough !== null) {
+                if (oldEnough) {
+                    connote(input);
+                }
+            } else {
+                let modal = $createModal("birthdayModal");
+                $(modal).modal('show');
             }
-        } else {
-            let modal = $createModal("birthdayModal");
-            $(modal).modal('show');
         }
+    } else {
+        connotationBoxShowing = false;
+        $slangBox.empty();
     }
 });
 
 $("#translate").on("click", function() {
-    let input = $(".userInput").val().trim();
+    let $translateBox = $(".translateBox");
 
-    if (input.length) {
-        displayTranslationBox();
+    if (!translateBoxShowing) {
+        translateBoxShowing = true;
+        let input = $(".userInput").val().trim();
+
+        if (input.length) {
+            displayTranslationBox();
+        }
+    } else {
+        translateBoxShowing = false;
+        $translateBox.empty();
     }
 });
 
